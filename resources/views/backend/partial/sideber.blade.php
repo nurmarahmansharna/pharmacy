@@ -96,14 +96,14 @@
 
 
                 <li id="categoryNav">
-                    <a href="http://localhost/pos/public/category">
-                        <i class="fa fa-files-o"></i> <span>Type</span>
+                    <a href="{{route('type')}}">
+                        <i class="fa fa-files-o"></i> <span>Medicine Type</span>
                     </a>
                 </li>
 
                 <li id="categoryNav">
-                    <a href="http://localhost/pos/public/Generic">
-                        <i class="fa fa-files-o"></i> <span>Generic</span>
+                    <a href="{{route('generic')}}">
+                        <i class="fa fa-files-o"></i> <span>Medicine Generic</span>
                     </a>
                 </li>
 
@@ -125,10 +125,10 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li id="addProductNav"><a href="{{route('product')}}"><i
+                        <li id="addMedicineNav"><a href="{{route('medicine')}}"><i
                                     class="fa fa-circle-o"></i>
                                 Add Medicines</a></li>
-                        <li id="manageProductNav"><a href="{{route('product.manage')}}"><i
+                        <li id="manageMedicinNav"><a href="{{route('medicine.manage')}}"><i
                                     class="fa fa-circle-o"></i> Manage Medicines</a></li>
                     </ul>
                 </li>
