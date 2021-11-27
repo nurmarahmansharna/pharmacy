@@ -39,25 +39,25 @@
 
                 <div class="form-group">
                   <label for="username">Name</label>
-                  <input name="customer_name" type="text" class="form-control" id="name"  placeholder="Type Customer Name" autocomplete="off">
+                  <input required name="customer_name" type="text" class="form-control" id="name"  placeholder="Type Customer Name" autocomplete="off">
                 </div>
 
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input name="email" type="email" class="form-control" id="email"  placeholder="Email" autocomplete="off">
+                  <input required name="email" type="email" class="form-control" id="email"  placeholder="Email" autocomplete="off">
                 </div>
 
 
 
                 <div class="form-group">
                   <label for="fname">Address</label>
-                  <input name="address" type="text" class="form-control" id="address"  placeholder="Address" autocomplete="off">
+                  <input required name="address" type="text" class="form-control" id="address"  placeholder="Address" autocomplete="off">
                 </div>
 
 
                 <div class="form-group">
                   <label for="phone">Phone</label>
-                  <input name="phone" type="text" class="form-control" id="phone"  placeholder="Phone" autocomplete="off">
+                  <input required name="phone" type="text" class="form-control" id="phone"  placeholder="Phone" autocomplete="off">
                 </div>
 
 

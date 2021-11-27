@@ -17,4 +17,13 @@ class genericController extends Controller
         ]);
         return redirect()->back();
     }
+    public function delete($id){
+        $generics=Generic::find($id);
+
+        if($generics){
+            $generics->delete();
+        return redirect()->back()->with('msg','Medicine type is delete successfully');
+        }
+        return redirect()->back()->with('msg','Medicine type is not deleted');
+    }
 }

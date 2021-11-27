@@ -14,7 +14,7 @@ class Medicine extends Model
         return $this->belongsTo(Type::class);
     
         }
-        public function generic(){
+         public function generic(){
         
             return $this->belongsTo(Generic::class);
         

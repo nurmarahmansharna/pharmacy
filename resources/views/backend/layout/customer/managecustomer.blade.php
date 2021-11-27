@@ -29,13 +29,22 @@
                 <br /> <br />
          <div>
 
-             @if(session()->has('message'))
-            <div class="row" style="padding: 20px;">
-                <span class="alert alert-success">{{session()->get('message')}}</span>
-            </div>
-            @endif
+            @if($errors->any())
+            @foreach($errors->all() as $error)
+               <div>
+                   <p class="alert alert-danger">{{error}}</p>
+               </div>
+           @endforeach
+               
+          @endif
+               
+               @if(session()->has('msg'))
+           <p class="alert alert-success">{{session()->get('msg')}}</p>
+               @endif
 
          </div>
+
+         
 
 
                 <div class="box">

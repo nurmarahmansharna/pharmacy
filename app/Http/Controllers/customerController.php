@@ -13,11 +13,18 @@ class customerController extends Controller
 
     public function customermanage(){
         $customer=Customer::all();
-        // dd($customer);
+        //dd($customer);
         return view('backend.layout.customer.managecustomer',compact('customer'));
     }
 
 public function customercreate(Request $request){
+    $request->validate([
+        'customer_name'=>'required',
+        'email'=>'required',
+        'address'=>'required',
+        'phone'=>'required',
+        
+    ]);
     Customer::create([
         'customer_name'=>$request->customer_name,
         'email'=>$request->email,
@@ -25,7 +32,7 @@ public function customercreate(Request $request){
         'phone'=>$request->phone,
         
     ]);
-return redirect()->back();
-}
+return redirect()->route('customer.manage')->with('msg','Product created successfully.');
+ }
 }
 

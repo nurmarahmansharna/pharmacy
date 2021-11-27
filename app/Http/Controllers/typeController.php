@@ -17,4 +17,16 @@ class typeController extends Controller
         ]);
         return redirect()->back();
     }
+    public function delete($id){
+        $types=Type::find($id);
+
+        if($types){
+            $types->delete();
+        return redirect()->back()->with('msg','Medicine type is delete successfully');
+        }
+        return redirect()->back()->with('msg','Medicine type is not deleted');
+    }
+
+    
 }
+

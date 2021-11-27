@@ -30,11 +30,22 @@
 
                 <div>
 
-                    @if(session()->has('message'))
-                   <div class="row" style="padding: 20px;">
-                       <span class="alert alert-success">{{session()->get('message')}}</span>
-                   </div>
-                   @endif
+                    <div>
+
+                        @if($errors->any())
+                        @foreach($errors->all() as $error)
+                           <div>
+                               <p class="alert alert-danger">{{error}}</p>
+                           </div>
+                       @endforeach
+                           
+                      @endif
+                           
+                           @if(session()->has('msg'))
+                       <p class="alert alert-success">{{session()->get('msg')}}</p>
+                           @endif
+            
+                     </div>
 
                 </div>
 
@@ -63,7 +74,7 @@
                                         <td>{{ $types->medicine_type }}</td>
                                         <td>{{ $types->status }}</td>
                                         <td class="">
-                                            <a onclick="return confirm('Are you sure you want to delete this item?');" href="#"><i class="material-icons">cancel</i></a>
+                                            <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('type.delete',$types->id)}}"><i class="material-icons">cancel</i></a>
                                             <a href="#"><i class="material-icons">edit</i></a>
                                             <a
                                                 href="#"><i

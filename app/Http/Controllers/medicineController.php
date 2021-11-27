@@ -34,7 +34,7 @@ class medicineController extends Controller
       'availability'=>$request->availability,
     
     
- ]);
- return redirect()->back();
-     }
+      ]);
+     return redirect()->back();
+    }
 }
