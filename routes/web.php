@@ -31,12 +31,16 @@ Route::get('/',[dashboardController::class,'dash'])->name('dashboard');
 Route::get('/customers',[customerController::class,'customer'])->name('customer');
 Route::get('/customers/manage',[customerController::class,'customermanage'])->name('customer.manage');
 Route::post('/customers/create',[customerController::class,'customercreate'])->name('customer.create');
+Route::get('/customers/delete/{id}',[customerController::class,'delete'])->name('customer.delete');
+
 //end customer
 
 //start supplier
 Route::get('/suppliers',[supplierController::class,'supplier'])->name('suppler');
 Route::get('/suppliers/manage',[supplierController::class,'suppliermanage'])->name('supplier.manage');
 Route::post('/suppliers/create',[supplierController::class,'suppliercreate'])->name('supplier.create');
+Route::get('/suppliers/delete/{id}',[supplierController::class,'delete'])->name('supplier.delete');
+
 //end supplier
 
 //start generic
@@ -57,6 +61,8 @@ Route::get('/medicine_type/delete/{id}',[typeController::class,'delete'])->name(
 Route::get('/medicines',[medicineController::class,'medicine'])->name('medicine');
 Route::get('/medicines/manage',[medicineController::class,'medicinemanage'])->name('medicine.manage');
 Route::post('/medicines/create',[medicineController::class,'medicinecreate'])->name('medicine.create');
+Route::get('/medicine/delete/{id}',[medicineController::class,'delete'])->name('medicine.delete');
+
 //end medicine
 
 //start purchase

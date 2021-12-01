@@ -62,7 +62,7 @@
                             <thead>
 
                                 <tr>
-                                    <th>Medicine Type </th>
+                                    <th>Medicine Type</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -83,7 +83,7 @@
                                         </td>
 
                                     </tr>
-                                @endforeach() 
+                                @endforeach
                             </tbody>
 
                         </table>

@@ -28,6 +28,15 @@
             <br /> <br />
             <div>
 
+              @if($errors->any())
+            @foreach($errors->all() as $error)
+               <div>
+                   <p class="alert alert-danger">{{error}}</p>
+               </div>
+           @endforeach
+               
+          @endif
+
                 @if(session()->has('message'))
                <div class="row" style="padding: 20px;">
                    <span class="alert alert-success">{{session()->get('message')}}</span>
@@ -49,6 +58,7 @@
                 <thead>
                 <tr>
                     <th>SL</th>
+                    <th>Image</th>
                   <th>Medicine Name</th>
                   <th>Sell Price</th>
                   <th>Description</th>
@@ -62,6 +72,9 @@
                     @foreach($medicines as $medicine)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <th>
+                              <img src="{{url('/uploads/'.$medicine->image)}}" width="50px" alt="medicine image">
+                          </th>
                             <td>{{$medicine->medicine_name}}</td>
                             <td>{{$medicine->sale_price}}</td>
                             <td>{!!$medicine->description!!}</td>
@@ -70,7 +83,7 @@
                             <td>{{$medicine->availability}}</td>
 
                             <td class="">
-                              <a onclick="return confirm('Are you sure you want to delete this item?');" href="#"><i class="material-icons">cancel</i></a>
+                              <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('medicine.delete',$medicine->id)}}"><i class="material-icons">cancel</i></a>
                               <a href="#"><i class="material-icons">edit</i></a>
 
                             </td>

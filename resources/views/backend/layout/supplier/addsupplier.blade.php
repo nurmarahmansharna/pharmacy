@@ -2,9 +2,6 @@
 @section('content')
 
 
-
-
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -28,6 +25,16 @@
 
           </div>
 
+          @if($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          </div>
+          
+              @endif
           <form role="form" action="{{route('supplier.create')}}" method="post"> {{--enctype="multipart/form-data"> --}}
             @csrf
               <div class="box-body">
@@ -36,22 +43,25 @@
                   <label for="suppliername">Supplier name</label>
                   <input type="text" class="form-control" id="supplier_name" name="supplier_name" placeholder="Supplier name" autocomplete="off">
                 </div>
+                
+
+                
 
 
                 <div class="form-group">
                   <label for="phone">Phone</label>
-                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" autocomplete="off">
+                  <input required name="phone" type="text" class="form-control" id="phone" name="phone" placeholder="Phone" autocomplete="off">
                 </div>
 
                 <div class="form-group">
                   <label for="address">Address</label>
-                  <input type="text" class="form-control" id="address" name="address" placeholder="Address" autocomplete="off">
+                  <input required name="address" type="text" class="form-control" id="address" name="address" placeholder="Address" autocomplete="off">
                 </div>
 
 
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Email" autocomplete="off">
+                  <input required name="email" type="email" class="form-control" id="email" name="email" placeholder="Email" autocomplete="off">
                 </div>
 
                 </div>

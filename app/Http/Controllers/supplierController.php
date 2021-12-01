@@ -11,10 +11,21 @@ class supplierController extends Controller
     }
     public function suppliermanage(){
         $supplier=Supplier::all();
-        // dd($customer);
+         //dd($supplier);
         return view('backend.layout.supplier.managesupplier',compact('supplier'));
     }
     public function suppliercreate(Request $request){
+
+        // dd($request->all());
+    $request->validate([
+        'supplier_name'=>'required',
+        'phone'=>'required|numeric|digits:11',
+        'address'=>'required',
+        'email'=>'required',
+        
+        
+        
+    ]);
       Supplier::create([
           'supplier_name'=>$request->supplier_name,
           'phone'=>$request->phone,
@@ -22,6 +33,15 @@ class supplierController extends Controller
           'email'=>$request->email,
 
       ]);
-      return redirect()->back();
+      return redirect()->route('supplier.manage')->with('message','Supplier created successfully.');
+    }
+    public function delete($id){
+        $suppliers=Supplier::find($id);
+
+        if($suppliers){
+            $suppliers->delete();
+        return redirect()->back()->with('message','Supplier is delete successfully');
+        }
+        return redirect()->back()->with('message','Supplier  is not deleted');
     }
 }

@@ -2,9 +2,6 @@
 @section('content')
 
 
-
-
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -30,13 +27,21 @@
             <div class="box-header">
               <h3 class="box-title">Add Customers</h3>
             </div>
+
+            @if($errors->any())
+              <div class="alert alert-danger">
+                <ul>
+                  @foreach ($errors->all() as $error)
+                  <li>{{$error}}</li>
+                  @endforeach
+                  
+                </ul>
+              </div>
+            @endif
+          
             <form role="form" action="{{route('customer.create')}}" method="post">
               @csrf
               <div class="box-body">
-
-
-
-
                 <div class="form-group">
                   <label for="username">Name</label>
                   <input required name="customer_name" type="text" class="form-control" id="name"  placeholder="Type Customer Name" autocomplete="off">

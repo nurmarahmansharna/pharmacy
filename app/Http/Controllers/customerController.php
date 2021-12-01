@@ -18,13 +18,15 @@ class customerController extends Controller
     }
 
 public function customercreate(Request $request){
+    // dd($request->all());
     $request->validate([
         'customer_name'=>'required',
         'email'=>'required',
         'address'=>'required',
-        'phone'=>'required',
+        'phone'=>'required|numeric|digits:11',
         
     ]);
+    // dd("pass");
     Customer::create([
         'customer_name'=>$request->customer_name,
         'email'=>$request->email,
@@ -32,7 +34,17 @@ public function customercreate(Request $request){
         'phone'=>$request->phone,
         
     ]);
-return redirect()->route('customer.manage')->with('msg','Product created successfully.');
+return redirect()->route('customer.manage')->with('msg','Customer created successfully.');
  }
+ public function delete($id){
+    $customers=Customer::find($id);
+
+    if($customers){
+        $customers->delete();
+    return redirect()->back()->with('msg','Customer is delete successfully');
+    }
+    return redirect()->back()->with('msg','Customer is not deleted');
+}
+ 
 }
 

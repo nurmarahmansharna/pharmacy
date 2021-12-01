@@ -15,7 +15,7 @@ class typeController extends Controller
             'medicine_type'=>$request->medicine_type,
             'status'=>$request->active,
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('msg','Medicine type created successfully.');
     }
     public function delete($id){
         $types=Type::find($id);

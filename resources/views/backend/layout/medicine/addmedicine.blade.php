@@ -35,33 +35,52 @@
           <div class="box-header">
             <h3 class="box-title">Add Medicine</h3>
           </div>
+
+          <div>
+
+            @if($errors->any())
+          @foreach($errors->all() as $error)
+             <div>
+                 <p class="alert alert-danger">{{error}}</p>
+             </div>
+         @endforeach
+             
+        @endif
+
+              @if(session()->has('message'))
+             <div class="row" style="padding: 20px;">
+                 <span class="alert alert-success">{{session()->get('message')}}</span>
+             </div>
+             @endif
+
+          </div>
           <!-- /.box-header -->
-           <form name="myForm" role="form" action="{{route('medicine.create')}}" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
+           <form name="myForm" role="form" action="{{route('medicine.create')}}" method="post" enctype="multipart/form-data" >
             @csrf
               <div class="box-body">
 
 
-                {{-- <div class="form-group">
+                <div class="form-group">
 
                   <label for="product_image">Image</label>
                   <div class="kv-avatar">
                       <div class="file-loading">
-                          <input id="product_image" name="product_image" type="file">
+                          <input required name="image" id="product_image"  type="file">
                       </div>
                   </div>
-                </div> --}}
+                </div>
 
                
 
                 <div class="form-group">
                   <label for="medicine_name">Medicine name</label>
-                  <input required="" type="text" class="form-control" id="medicine_name" name="medicine_name" placeholder="Enter medicine name" autocomplete="off"/>
+                  <input required name="medicine_name" type="text" class="form-control" id="medicine_name"  placeholder="Enter medicine name" autocomplete="off"/>
                 </div>
 
 
                 <div class="form-group">
                     <label for="price">Sell Price</label>
-                    <input required="" type="text" class="form-control" id="sale_price" name="sale_price"
+                    <input required name="sale_price" type="text" class="form-control" id="sale_price" name="sale_price"
                         placeholder="Enter price" autocomplete="off" />
                 </div>
 
@@ -72,7 +91,7 @@
 
                 <div class="form-group">
                   <label for="description">Description</label>
-                  <textarea  type="text" class="form-control" id="description" name="description" placeholder="Enter
+                  <textarea required  type="text" class="form-control" id="description" name="description" placeholder="Enter
                   description" autocomplete="off">
                   </textarea>
                 </div>
