@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Type;
+use App\Models\Medicine;
 use Illuminate\Http\Request;
 
 class typeController extends Controller
@@ -27,6 +28,10 @@ class typeController extends Controller
         return redirect()->back()->with('msg','Medicine type is not deleted');
     }
 
-    
+    public function details($id){
+        $medicine=Medicine::where('type_id',$id)->get();
+        return view('backend.layout.type.type_details',compact('medicine'));
+        
+    } 
 }
 

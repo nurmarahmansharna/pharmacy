@@ -77,7 +77,7 @@
                                             <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('generic.delete',$generics->id)}}"><i class="material-icons">cancel</i></a>
                                             <a href="#"><i class="material-icons">edit</i></a>
                                             <a
-                                                href="#"><i
+                                                href="{{route('generic.details',$generics->id)}}"><i
                                                     class="material-icons">details</i></a>
 
                                         </td>

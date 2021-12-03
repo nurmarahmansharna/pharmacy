@@ -42,11 +42,11 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li id="mainNav"><a href="http://localhost/pos/public/admin/user"><i class="fa fa-circle-o"></i>
+                        <li id="mainNav"><a href="{{route('user')}}"><i class="fa fa-circle-o"></i>
                                 Add
                                 Users</a></li>
 
-                        <li id="mainNav"><a href="http://localhost/pos/public/admin/user/manage"><i
+                        <li id="mainNav"><a href="{{route('user.usermanage')}}"><i
                                     class="fa fa-circle-o"></i>
                                 Manage Users</a></li>
                     </ul>
