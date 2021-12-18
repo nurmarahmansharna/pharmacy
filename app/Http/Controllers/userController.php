@@ -11,6 +11,7 @@ class userController extends Controller
         return view('backend.layout.user.adduser');
     }
     public function usermanage(){
+        
         $users=User::all();
         return view('backend.layout.user.manageuser',compact('users'));
     }

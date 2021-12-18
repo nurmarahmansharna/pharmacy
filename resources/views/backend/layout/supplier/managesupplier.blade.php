@@ -72,7 +72,7 @@
 
                             <td class="">
                               <a onclick="return confirm('Are you sure you want to delete this item?');"a href="{{route('supplier.delete',$suppliers->id)}}"><i class="material-icons">cancel</i></a>
-                              <a href="#"><i class="material-icons">edit</i></a>
+                              <a href="{{route('supplier.edit',$suppliers->id)}}"><i class="material-icons">edit</i></a>
 
                             </td>
 

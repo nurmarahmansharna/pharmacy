@@ -25,6 +25,7 @@ class medicineController extends Controller
 
     }
     public function medicinecreate(Request $s){
+        // dd($request->all());
 
         $s->validate([
             'image'=>'required',
@@ -63,5 +64,25 @@ class medicineController extends Controller
         return redirect()->back()->with('message','Medicine is delete successfully');
         }
         return redirect()->back()->with('message','Medicine  is not deleted');
+    }
+    public function edit($id){
+        $medicine_type=Type::all();
+        $generic_type=Generic::all();
+        $medicine_edit=Medicine::find($id);
+        return view('backend.layout.medicine.editmedicine',compact('medicine_edit','medicine_type','generic_type'));
+    }
+    public function update(Request $request,$id){
+        $medicine_update=Medicine::find($id);
+       $medicine_update->update([
+            'image'=>$request->filename,
+            'medicine_name'=>$request->medicine_name,
+            'sale_price'=>$request->sale_price,
+            'description'=>$request->description,
+            'type_id'=>$request->type,
+            'generic_id'=>$request->generic,
+            'availability'=>$request->availability
+        ]);
+        return redirect()->route('medicine.manage')->with('message','Medicine is update successfully');
+
     }
 }

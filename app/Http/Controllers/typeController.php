@@ -9,6 +9,7 @@ class typeController extends Controller
 {
     public function type(){
         $type=Type::all();
+         //dd($type);
         return view('backend.layout.type.type',compact('type'));
     }
     public function typecreate(Request $request){

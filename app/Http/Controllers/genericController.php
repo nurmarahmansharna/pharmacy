@@ -9,6 +9,7 @@ class genericController extends Controller
 {
     public function generic(){
         $generic=Generic::all();
+         //dd($generic);
         return view('backend.layout.generic.generic',compact('generic'));
     }
     public function genericcreate(Request $request){

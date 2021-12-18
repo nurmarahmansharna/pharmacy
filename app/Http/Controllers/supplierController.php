@@ -44,4 +44,21 @@ class supplierController extends Controller
         }
         return redirect()->back()->with('message','Supplier  is not deleted');
     }
+    public function edit($id){
+        $supplier=Supplier::find($id);
+        return view('backend.layout.supplier.editsupplier',compact('supplier'));   
+     }
+    Public function update(Request $request, $id){
+        $supplier=Supplier::find($id);
+
+        $supplier->update([
+            'supplier_name'=>$request->supplier_name,
+            'phone'=>$request->phone,
+            'address'=>$request->address,
+            'email'=>$request->email,
+  
+        ]);
+        return redirect()->route('supplier.manage')->with('msg','Supplier information update successfully');
+
+    }
 }

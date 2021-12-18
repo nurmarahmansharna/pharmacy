@@ -76,7 +76,7 @@
                                         <td>{{ $customers->phone}}</td>
                                         <td class="">
                                             <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('customer.delete',$customers->id)}}"><i class="fa fa-close" style="font-size:24px"></i></a>
-                                            <a href="#"><i class="fa fa-pencil" style="font-size:24px"></i></a>
+                                            <a href="{{route('customer.edit',$customers->id)}}"><i class="fa fa-pencil" style="font-size:24px"></i></a>
 
                                           </td>
 

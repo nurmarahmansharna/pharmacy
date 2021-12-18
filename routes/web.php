@@ -39,6 +39,8 @@ Route::get('/customers',[customerController::class,'customer'])->name('customer'
 Route::get('/customers/manage',[customerController::class,'customermanage'])->name('customer.manage');
 Route::post('/customers/create',[customerController::class,'customercreate'])->name('customer.create');
 Route::get('/customers/delete/{id}',[customerController::class,'delete'])->name('customer.delete');
+Route::get('/customer/edit/{id}',[customerController::class,'edit'])->name('customer.edit');
+Route::put('/customer/update/{id}',[customerController::class,'update'])->name('customer.update');
 //end customer
 
 //start supplier
@@ -46,7 +48,8 @@ Route::get('/suppliers',[supplierController::class,'supplier'])->name('suppler')
 Route::get('/suppliers/manage',[supplierController::class,'suppliermanage'])->name('supplier.manage');
 Route::post('/suppliers/create',[supplierController::class,'suppliercreate'])->name('supplier.create');
 Route::get('/suppliers/delete/{id}',[supplierController::class,'delete'])->name('supplier.delete');
-
+Route::get('/supplier/edit/{id}',[supplierController::class,'edit'])->name('supplier.edit');
+Route::put('/supplier/update/{id}',[supplierController::class,'update'])->name('supplier.update');
 //end supplier
 
 //start generic
@@ -71,9 +74,12 @@ Route::get('/medicines',[medicineController::class,'medicine'])->name('medicine'
 Route::get('/medicines/manage',[medicineController::class,'medicinemanage'])->name('medicine.manage');
 Route::post('/medicines/create',[medicineController::class,'medicinecreate'])->name('medicine.create');
 Route::get('/medicine/delete/{id}',[medicineController::class,'delete'])->name('medicine.delete');
+Route::get('/medicine/edit/{id}',[medicineController::class,'edit'])->name('medicine.edit');
+Route::put('/medicine/update/{id}',[medicineController::class,'update'])->name('medicine.update');
 
 //end medicine
 
 //start purchase
 Route::get('/purchase',[purchaseController::class,'purchase'])->name('purchase');
+
 
