@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\userController;
+use App\Http\Controllers\loginController;
 use App\Http\Controllers\customerController;
 use App\Http\Controllers\supplierController;
 use App\Http\Controllers\genericController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\typeController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\purchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,15 +26,25 @@ use App\Http\Controllers\dashboardController;
 
 // Route::get('/aaa', function () {
 //     return view('master');
-    
-// });
-Route::get('/',[dashboardController::class,'dash'])->name('dashboard');
+
+//login
+
+Route::get('/',[loginController::class,'login'])->name('login');
+Route::post('/login',[loginController::class,'login_user'])->name('login_user');
+Route::group(['middleware'=>'auth'],function()
+{
+    Route::group(['prefix'=>'admin','middleware'=>'manager'],function (){
+    Route::get('/dashboard',[dashboardController::class,'dash'])->name('dashboard');
 
 //start user
 Route::get('/user',[userController::class,'user'])->name('user');
 Route::get('/user/manage',[userController::class,'usermanage'])->name('user.usermanage');
 Route::post('/user/create',[userController::class,'usercreate'])->name('user.usercreate');
 Route::get('/user/delete/{id}',[userController::class,'delete'])->name('user.delete');
+
+        });
+
+
 
 //start customer
 Route::get('/customers',[customerController::class,'customer'])->name('customer');
@@ -81,5 +93,7 @@ Route::put('/medicine/update/{id}',[medicineController::class,'update'])->name('
 
 //start purchase
 Route::get('/purchase',[purchaseController::class,'purchase'])->name('purchase');
+Route::get('/purchase/manage',[purchaseController::class,'managepurchase'])->name('manage.purchase');
 
-
+Route::get('/logout',[LoginCon::class,'logout'])->name('logout');
+});

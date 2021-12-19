@@ -10,7 +10,7 @@
             
 
 
-
+            @if(auth()->user()->type=='manager')
 
                 <li id="mainNav">
                     <a href="{{route('dashboard')}}">
@@ -212,7 +212,7 @@
                 </li>
             
 
-
+@endif
             
 
         
