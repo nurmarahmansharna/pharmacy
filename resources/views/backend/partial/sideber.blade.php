@@ -10,7 +10,7 @@
             
 
 
-            @if(auth()->user()->type=='manager')
+            @if(auth()->user()->type=='admin')
 
                 <li id="mainNav">
                     <a href="{{route('dashboard')}}">
@@ -21,7 +21,7 @@
 
 
                 <li id="brandNav">
-                    <a href="http://localhost/pos/public/pos">
+                    <a href="{{route('sale')}}">
                         <i class="fa fa-shopping-cart"></i><span>Sale</span>
                     </a>
                 </li>
@@ -107,12 +107,12 @@
                     </a>
                 </li>
 
-
                 <li id="categoryNav">
-                    <a href="http://localhost/pos/public/stock">
-                        <i class="fa fa-files-o"></i> <span>Stocks</span>
+                    <a href="{{route('stock')}}">
+                        <i class="fa fa-files-o"></i> <span>Stock</span>
                     </a>
                 </li>
+               
 
 
 
@@ -144,9 +144,9 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li id="addPurchaseNav"><a href="http://localhost/pos/public/purchase"><i
+                        <li id="addPurchaseNav"><a href="{{route('purchase')}}"><i
                                     class="fa fa-circle-o"></i> Add Purchase</a></li>
-                        <li id="managePurchaseNav"><a href="http://localhost/pos/public/purchaseadd"><i
+                        <li id="managePurchaseNav"><a href="{{route('manage.purchase')}}"><i
                                     class="fa fa-circle-o"></i> Manage Purchase</a></li>
                     </ul>
                 </li>
@@ -206,7 +206,7 @@
 
 
                 <li>
-                    <a href="http://localhost/pos/public/logout"><i class="glyphicon glyphicon-log-out"></i> </i>
+                    <a href="{{route('logout')}}"><i class="glyphicon glyphicon-log-out"></i> </i>
                         <span>Logout</span>
                     </a>
                 </li>

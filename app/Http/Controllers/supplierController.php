@@ -22,17 +22,15 @@ class supplierController extends Controller
         'phone'=>'required|numeric|digits:11',
         'address'=>'required',
         'email'=>'required',
-        
-        
-        
-    ]);
+         
+     ]);
       Supplier::create([
           'supplier_name'=>$request->supplier_name,
           'phone'=>$request->phone,
           'address'=>$request->address,
           'email'=>$request->email,
 
-      ]);
+     ]);
       return redirect()->route('supplier.manage')->with('message','Supplier created successfully.');
     }
     public function delete($id){

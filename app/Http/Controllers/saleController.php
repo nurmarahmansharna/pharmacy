@@ -2,27 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Medicine;
-use App\Models\Purchase;
-use App\Models\Supplier;
+use App\Models\saledetails;
+use App\Models\sale;
 use App\Models\Stock;
-use App\Models\Purchasedetails;
 use Illuminate\Http\Request;
 
-class purchaseController extends Controller
+class saleController extends Controller
 {
-    public function purchase(){
-        $medicine=Medicine::all();
-        $supplier=Supplier::all();
-        return view('backend.layout.purchase.addpurchase',compact('medicine','supplier'));
+    public function sale(){
+        $medicine=Stock::all();
+        $customer=Customer::all();
+        return view('backend.layout.sale.sale',compact('medicine','customer')); 
     }
-    public function managepurchase(){
-        $purchase=Purchase::with('User')->orderBy('id','desc')->paginate(8);
-        return view('backend.layout.purchase.managepurchase',compact('purchase'));
-    }
-
-
-    
 
     public function cart(Request $request)
     {
@@ -52,11 +45,9 @@ class purchaseController extends Controller
                     $medicine->id  => [
                         "medicine_id" => $medicine->id,
                         "medicine_name" => $medicine->medicine_name,
-                        "buy_price" => $request->buy_price,
+                        "sale_price" => $medicine->sale_price,
                         "qty" => $request->qty,
-                        "produced_date" => $request->produced_date,
-                        "expired_date" => $request->expired_date,
-                        'sub_total' =>$request->buy_price * $request->qty
+                        'sub_total' =>$request->sale_price * $request->qty
                     ]
 
             ];
@@ -85,11 +76,9 @@ class purchaseController extends Controller
         $cart[$medicine->id] = [
             "medicine_id" => $medicine->id,
             "medicine_name" => $medicine->medicine_name,
-            "buy_price" => $request->buy_price,
+            "sale_price" => $medicine->sale_price,
             "qty" => $request->qty,
-            "produced_date" => $request->produced_date,
-            "expired_date" => $request->expired_date,
-            'sub_total' =>$request->buy_price * $request->qty
+            'sub_total' =>$request->sale_price * $request->qty
         ];
 
         session()->put('cart', $cart);
@@ -116,7 +105,7 @@ return redirect()->back();
         //dd($carts);
         $total=array_sum(array_column($carts,'sub_total'));
 
-        $purchaseid=Purchase::create([
+        $purchaseid=sale::create([
             
             'purchase_date'=>$request->purchase_date,
             'challan_no'=>$request->challan_no,
@@ -128,12 +117,12 @@ return redirect()->back();
 
 
         $carts=session()->get('cart');
-        //dd($carts);
+        dd($carts);
 
 
             foreach ($carts as $cart){
 
-          $details=Purchasedetails::create([
+          $details=saledetails::create([
                 'purchase_id' => $purchaseid->id,
                 'medicine_id' => $cart['medicine_id'],
                 'qty' => $cart['qty'],
@@ -177,10 +166,9 @@ return redirect()->route('manage.purchase',$purchaseid);
 
 }
 public function details($id){
-    $purchasedetails=Purchasedetails::where('purchase_id',$id)->get();
+    $purchasedetails=saledetails::where('purchase_id',$id)->get();
     return view('backend.layout.purchase.purchasedetails',compact('purchasedetails'));
     
-} 
+}
 
-    
 }

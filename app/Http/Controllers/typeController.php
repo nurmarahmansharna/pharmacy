@@ -34,5 +34,28 @@ class typeController extends Controller
         return view('backend.layout.type.type_details',compact('medicine'));
         
     } 
+    public function edit($id){
+
+        $type=Type::find($id);
+        //dd($type);
+        return view('backend.layout.type.edit_type',compact('type'));
+    
+    }
+    public function update (Request $request, $id)
+    {
+        // dd($request->all());
+
+        $types=Type::find($id);
+
+        $types->update([
+            'medicine_type'=>$request->medicine_type,
+            'status'=>$request->active,
+
+
+        ]);
+
+        return redirect()->route('type')->with('msg','Medicine type is Updated');
+
+    }
 }
 

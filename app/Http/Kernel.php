@@ -58,7 +58,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'admin' => \App\Http\Middleware\CheckAdmin::class,
         'manager' => \App\Http\Middleware\CheckManager::class,
-        
+        'salesman' => \App\Http\Middleware\CheckSalesman::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,

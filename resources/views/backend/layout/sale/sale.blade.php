@@ -61,7 +61,7 @@
                                             
                                             @foreach($medicine as $medicines)
 
-                                                <option value="{{ $medicines->id }}">{{ $medicines->medicine_name}}</option>
+                                                <option value="{{ $medicines->id }}">{{ $medicines->medicine->medicine_name}}</option>
 
                                             @endforeach
                                         </select>
@@ -77,25 +77,11 @@
                                             placeholder="Enter Qty" autocomplete="off" />
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="price">Buy Price</label>
-                                        <input type="text" class="form-control" id="price" name="buy_price"
-                                            placeholder="Enter price" autocomplete="off" />
-                                    </div>
+                                    
 
-                                    <div class="form-group">
-                                        <label for="date" class="form-label">Expired Date</label>
-                                        <input required type="date" value="{{ date('Y-m-d') }}"
-                                            class="form-control"
-                                            id="purchase_date" name="produced_date">
-                                    </div>
+                                   
 
-                                    <div class="form-group">
-                                        <label for="date" class="form-label">Expired Date</label>
-                                        <input required type="date" value="{{ date('Y-m-d') }}"
-                                            class="form-control"
-                                            id="purchase_date" name="expired_date">
-                                    </div>
+                                    
 
 
 
@@ -148,7 +134,7 @@
                                             @if($cart)
                                                 @foreach($cart as $carts)
                                                     @php
-                                                        $subtotal=$carts['buy_price']*$carts['qty'];
+                                                        $subtotal=$carts['sale_price']*$carts['qty'];
 
                                                         $total=$subtotal+ $total
                                                     @endphp
@@ -156,7 +142,7 @@
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $carts['medicine_name'] }}</td>
-                                                        <td>{{ $carts['buy_price'] }}</td>
+                                                        <td>{{ $carts['sale_price'] }}</td>
                                                         <td>{{ $carts['qty'] }}</td>
 
 
@@ -190,18 +176,13 @@
                             <form action="{{route('post')}}" method="post">
                                 @csrf
 
-                                <div class="form-group">
-
-                                    <label for="challan_no">Challan No</label>
-                                    <input type="text" class="form-control" id="challan_no" name="challan_no"
-                                        placeholder="" autocomplete="off" />
-                                </div>
+                                
 
                                 <div class="form-group">
                                     <label for="date" class="form-label">Date</label>
                                     <input required type="date" value="{{ date('Y-m-d') }}"
                                         class="form-control"
-                                        id="purchase_date" name="purchase_date">
+                                        id="sale_date" name="sale_date">
                                 </div>
 
 
@@ -214,9 +195,9 @@
                                     <select type="text" class="form-control select_group" id="supplier_name"
                                         name="supplier_name" placeholder="Customer" autocomplete="off">
                                         
-                                        @foreach($supplier as $suppliers)
+                                        @foreach($customer as $customers)
 
-                                            <option value="{{ $suppliers->id }}">{{ $suppliers->supplier_name }}</option>
+                                            <option value="{{ $customers->id }}">{{ $customers->customer_name }}</option>
 
                                         @endforeach
                                     </select>

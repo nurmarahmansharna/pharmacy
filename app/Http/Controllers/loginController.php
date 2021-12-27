@@ -10,6 +10,12 @@ class loginController extends Controller
     public function login(){
         return view('backend.layout.login.login');
     }
+    public function logout ()
+    {
+
+        Auth::logout();
+        return redirect()->route('login');
+    }
     public function login_user ( Request $request)
     {
 
@@ -17,14 +23,14 @@ class loginController extends Controller
         $req=$request->except('_token');
         // dd(Auth::attempt($req));
         if(Auth::attempt($req)){
-            if(auth()->user()->type=='Admin'){
-                return redirect()->route('dash');
+            if(auth()->user()->type=='admin'){
+                return redirect()->route('dashboard');
             }
             elseif(auth()->user()->type=='manager'){
                 return redirect()->route('dashboard');
             }
             elseif(auth()->user()->type=='salesman'){
-                return redirect()->route('pos');
+                return redirect()->route('dashboard');
             }
             else{
                 Auth::logout();

@@ -74,12 +74,13 @@
                                         <td>{{ $types->medicine_type }}</td>
                                         <td>{{ $types->status }}</td>
                                         <td class="">
+                                            
+
                                             <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('type.delete',$types->id)}}"><i class="material-icons">cancel</i></a>
-                                            <a href="#"><i class="material-icons">edit</i></a>
+                                            <a href="{{route('type.edit',$types->id)}}"><i class="material-icons">edit</i></a>
                                             <a
                                                 href="{{route('type.details',$types->id)}}"><i
                                                     class="material-icons">details</i></a>
-
                                         </td>
 
                                     </tr>

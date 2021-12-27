@@ -12,6 +12,8 @@ use App\Http\Controllers\typeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\purchaseController;
+use App\Http\Controllers\saleController;
+use App\Http\Controllers\stockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,7 @@ Route::get('/',[loginController::class,'login'])->name('login');
 Route::post('/login',[loginController::class,'login_user'])->name('login_user');
 Route::group(['middleware'=>'auth'],function()
 {
-    Route::group(['prefix'=>'admin','middleware'=>'manager'],function (){
+    Route::group(['prefix'=>'admin','middleware'=>'admin'],function (){
     Route::get('/dashboard',[dashboardController::class,'dash'])->name('dashboard');
 
 //start user
@@ -42,7 +44,15 @@ Route::get('/user/manage',[userController::class,'usermanage'])->name('user.user
 Route::post('/user/create',[userController::class,'usercreate'])->name('user.usercreate');
 Route::get('/user/delete/{id}',[userController::class,'delete'])->name('user.delete');
 
-        });
+       });
+
+//start sale 
+Route::get('/sale',[saleController::class,'sale'])->name('sale');
+Route::post('/sale/cart',[saleController::class,'cart'])->name('cart');
+Route::get('/sale/forget',[saleController::class,'forget'])->name('forget');
+Route::post('/sale/cart/post',[saleController::class,'post'])->name('post');
+Route::get('purchase/details/{id}',[saleController::class,'details'])->name(('purchase.details'));  
+//end sale  
 
 
 
@@ -77,6 +87,8 @@ Route::get('/medicine_type',[typeController::class,'type'])->name('type');
 Route::post('/medicine_type/create',[typeController::class,'typecreate'])->name('type.create');
 Route::get('/medicine_type/delete/{id}',[typeController::class,'delete'])->name('type.delete');
 Route::get('medicine_type/details/{id}',[typeController::class,'details'])->name(('type.details'));
+Route::get('/medicine_type/edit/{id}',[typeController::class,'edit'])->name('type.edit');
+Route::put('/medicine_type/update/{id}',[typeController::class,'update'])->name('type.update');
 
 
 //end type
@@ -94,6 +106,16 @@ Route::put('/medicine/update/{id}',[medicineController::class,'update'])->name('
 //start purchase
 Route::get('/purchase',[purchaseController::class,'purchase'])->name('purchase');
 Route::get('/purchase/manage',[purchaseController::class,'managepurchase'])->name('manage.purchase');
+Route::post('/cart',[purchaseController::class,'cart'])->name('cart');
+Route::get('/forget',[purchaseController::class,'forget'])->name('forget');
+Route::post('/cart/post',[purchaseController::class,'post'])->name('post');
+Route::get('purchase/details/{id}',[purchaseController::class,'details'])->name(('purchase.details'));
 
-Route::get('/logout',[LoginCon::class,'logout'])->name('logout');
+//purchase end
+
+//stock start
+Route::get('/stocks',[stockController::class,'stock'])->name('stock');
+//stock end
+//logout start
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 });

@@ -187,7 +187,7 @@
     });
 
   });
-</script>
+</script> 
 
 <script>
     function validateForm() {

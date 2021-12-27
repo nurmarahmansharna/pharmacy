@@ -54,7 +54,7 @@ class medicineController extends Controller
             'generic_id'=>$s->generic,
             'availability'=>$s->availability
         ]);
-        return redirect()->route('medicine.manage')->with('message','Message');
+        return redirect()->route('medicine.manage')->with('message','Medicine create successfully');
     }
     public function delete($id){
         $medicines=Medicine::find($id);
@@ -66,12 +66,15 @@ class medicineController extends Controller
         return redirect()->back()->with('message','Medicine  is not deleted');
     }
     public function edit($id){
+        //dd($id);
         $medicine_type=Type::all();
         $generic_type=Generic::all();
         $medicine_edit=Medicine::find($id);
         return view('backend.layout.medicine.editmedicine',compact('medicine_edit','medicine_type','generic_type'));
     }
     public function update(Request $request,$id){
+        //dd($request all());
+        //dd($id);
         $medicine_update=Medicine::find($id);
        $medicine_update->update([
             'image'=>$request->filename,

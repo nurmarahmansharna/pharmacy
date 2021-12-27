@@ -1,15 +1,12 @@
 @extends('master')
 @section('content')
 
-@php
-    $total=0;
-@endphp
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Manage
-        Sale</small>
+        Purchase Details</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -26,15 +23,12 @@
           <div id="messages"></div>
 
 
-
-
-
-
-<div id="printableArea">
+                    <a href="{{route('purchase')}}" class="btn btn-primary">Add Purchase</a>
+            <br /> <br />
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Manage Products</h3>
+              <h3 class="box-title">Purchase Details</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -42,53 +36,49 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Invoice No</th>
-                  <th>Date</th>
-                  <th>Challan No</th>
-                  <th>Supplier</th>
-                  <th>Total Price</th>
-                  <th>Purchase By</th>
-                  <th>Action</th>
+                  <th>Purchase Id</th>
+                  <th>Item</th>
+                  <th>Qty</th>
+                  <th>Unit Price</th>
+                  <th>Sub Total</th>
+                  {{-- <th>category</th> --}}
+                  {{-- <th>Action</th> --}}
                   </tr>
                 </thead>
                 <tbody>
 
-                    @foreach($purchase as $purchases)
-                    @php
 
-                    $total=$purchases->total_price+ $total
-                @endphp
+
+                    @foreach($purchasedetails as $cart)
                     <tr>
+
                         <td>{{ $loop->iteration }}</td>
-                        <td>inv{{$purchases->id}}m</td>
-                        <td>{{$purchases->purchase_date}}</td>
-                        <td>{{$purchases->challan_no}}</td>
-                        <td>{{$purchases->Supplier->supplier_name}}</td>
-                        <td>{{$purchases->total_price}}</td>
-                        <td>{{$purchases->User->username}}</td>
+                        <td>{{$cart['purchase_id']}}</td>
+                        <td>{{$cart->medicine->medicine_name}}</td>
+                        <td>{{$cart['qty']}}</td>
+                        <td>{{$cart['unit_price']}}</td>
+                        <td>{{$cart['unit_price']*$cart['qty']}}</td>
+
+                        {{-- <td>{{$purc->category->category_name}}</td> --}}
 
 
 
 
+                        {{-- <td class="">
+                          <a href="#"><i class="material-icons">cancel</i></a>
+                          <a href="#"><i class="material-icons">edit</i></a>
 
-
-                        <td class="">
-                            <a href="{{route('purchase.details',$purchases->id)}}"><i class="fa fa-align-justify"></i></a>
-
-
-                        </td>
+                        </td> --}}
 
 
 
 
                     </tr>
                     @endforeach()
+
             </tbody>
 
               </table>
-              <h3><td>TOTAL- {{$total}} TK</td></h3>
-              {{$purchase->links('pagination::bootstrap-4')}}
-
 
             </div>
             <!-- /.box-body -->
@@ -99,7 +89,7 @@
       </div>
       <!-- /.row -->
 
-</div>
+
     </section>
     <!-- /.content -->
   </div>

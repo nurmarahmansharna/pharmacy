@@ -69,11 +69,11 @@
                                         <td>{{ $loop->iteration}}</td>
                                         <td>{{ $medicines->medicine_name}}</td>
                                        
-                                        {{-- <td class="">
+                                        <td class="">
                                             <a onclick="return confirm('Are you sure you want to delete this item?');" href="#"><i class="fa fa-close" style="font-size:24px"></i></a>
                                             <a href="#"><i class="fa fa-pencil" style="font-size:24px"></i></a>
 
-                                          </td> --}}
+                                          </td>
 
 
                                     </tr>
