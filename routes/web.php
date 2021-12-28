@@ -48,10 +48,11 @@ Route::get('/user/delete/{id}',[userController::class,'delete'])->name('user.del
 
 //start sale 
 Route::get('/sale',[saleController::class,'sale'])->name('sale');
-Route::post('/sale/cart',[saleController::class,'cart'])->name('cart');
+Route::get('/sale/manage',[saleController::class,'salemanage'])->name('salemanage');
+Route::post('/sale/cart',[saleController::class,'cart'])->name('salecart');
 Route::get('/sale/forget',[saleController::class,'forget'])->name('forget');
-Route::post('/sale/cart/post',[saleController::class,'post'])->name('post');
-Route::get('purchase/details/{id}',[saleController::class,'details'])->name(('purchase.details'));  
+Route::post('/sale/cart/post',[saleController::class,'post'])->name('salepost');
+Route::get('sale/details/{id}',[saleController::class,'details'])->name(('sale.details'));  
 //end sale  
 
 

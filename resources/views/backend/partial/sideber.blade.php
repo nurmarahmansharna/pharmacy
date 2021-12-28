@@ -27,7 +27,7 @@
                 </li>
 
                 <li id="brandNav">
-                    <a href="http://localhost/pos/public/manage/sale">
+                    <a href="{{route('salemanage')}}">
                         <i class="fa fa-shopping-cart"></i><span>Manage Sale </span>
                     </a>
                 </li>

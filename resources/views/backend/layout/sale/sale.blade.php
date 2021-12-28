@@ -4,14 +4,14 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Medicine Purchase
+            Medicine Sale
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
 
 
 
-            <li class="active">POS</li>
+            <li class="active">Sale</li>
         </ol>
     </section>
 
@@ -27,7 +27,7 @@
 
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Purchase</h3>
+                        <h3 class="box-title">Sale</h3>
                     </div>
 
 
@@ -47,7 +47,7 @@
                         <div class="col-md-6">
 
                             <!-- /.box-header -->
-                            <form role="form" action="{{route('cart')}}" method="post">
+                            <form role="form" action="{{ route('salecart') }}" method="post">
                                 {{-- enctype="multipart/form-data"> --}}
                                 @csrf
 
@@ -71,17 +71,15 @@
 
 
 
+
                                     <div class="form-group">
                                         <label for="qty">Qty</label>
                                         <input type="text" class="form-control" id="qty" name="qty"
                                             placeholder="Enter Qty" autocomplete="off" />
                                     </div>
 
-                                    
 
-                                   
 
-                                    
 
 
 
@@ -124,8 +122,8 @@
                                                 <th>Price</th>
                                                 <th>Qty</th>
                                                 <th>Sub Total</th>
-                                                <th><i
-                                                            class="fa fa-trash"></i></th>
+                                                <th><a href=""><i
+                                                            class="fa fa-trash"></i></a></th>
 
                                             </tr>
                                         </thead>
@@ -135,7 +133,6 @@
                                                 @foreach($cart as $carts)
                                                     @php
                                                         $subtotal=$carts['sale_price']*$carts['qty'];
-
                                                         $total=$subtotal+ $total
                                                     @endphp
 
@@ -148,7 +145,7 @@
 
 
                                                         <td>{{ $subtotal }}</td>
-                                                        <td><a href="{{ route('forget') }}"><i
+                                                        <td><a href="{{route('forget')}}"><i
                                                                     class="fa fa-trash"></i></a></td>
 
 
@@ -173,16 +170,14 @@
 
                             </form>
 
-                            <form action="{{route('post')}}" method="post">
+                            <form action="{{ route('salepost') }}" method="post">
                                 @csrf
-
-                                
 
                                 <div class="form-group">
                                     <label for="date" class="form-label">Date</label>
                                     <input required type="date" value="{{ date('Y-m-d') }}"
-                                        class="form-control"
-                                        id="sale_date" name="sale_date">
+                                        min="{{ date('Y-m-d') }}" class="form-control"
+                                        id="purchase_date" name="sale_date">
                                 </div>
 
 
@@ -191,13 +186,13 @@
 
 
                                 <div class="form-group">
-                                    <label for="supplier_name">Customer</label>
-                                    <select type="text" class="form-control select_group" id="supplier_name"
-                                        name="supplier_name" placeholder="Customer" autocomplete="off">
+                                    <label for="customer_name">Customer</label>
+                                    <select type="text" class="form-control select_group" id="customer_name"
+                                        name="customer_name" placeholder="Customer" autocomplete="off">
                                         
-                                        @foreach($customer as $customers)
+                                        @foreach($customer as $add)
 
-                                            <option value="{{ $customers->id }}">{{ $customers->customer_name }}</option>
+                                            <option value="{{ $add->id }}">{{ $add->customer_name }}</option>
 
                                         @endforeach
                                     </select>
@@ -206,8 +201,7 @@
 
 
 
-                                
-
+                               
 
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -243,10 +237,8 @@
     $(document).ready(function () {
         $(".select_group").select2();
         $("#description").wysihtml5();
-
         $("#mainProductNav").addClass('active');
         $("#addProductNav").addClass('active');
-
         var btnCust = '<button type="button" class="btn btn-secondary" title="Add picture tags" ' +
             'onclick="alert(\'Call your custom code here.\')">' +
             '<i class="glyphicon glyphicon-tag"></i>' +
@@ -269,7 +261,6 @@
             },
             allowedFileExtensions: ["jpg", "png", "gif"]
         });
-
     });
 </script>
 <script>

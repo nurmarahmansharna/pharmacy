@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Medicine;
-use App\Models\saledetails;
-use App\Models\sale;
+use App\Models\Saledetails;
+use App\Models\Sale;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 
@@ -16,13 +16,85 @@ class saleController extends Controller
         $customer=Customer::all();
         return view('backend.layout.sale.sale',compact('medicine','customer')); 
     }
+    public function salemanage(){
+        $sale=sale::all();
+        return view('backend.layout.sale.sale',compact('sale'));
+    }
+
+    public function post( Request $request){
+
+        $carts=session()->get('cart');
+
+        $total=array_sum(array_column($carts,'sub_total'));
+
+        $saleid=Sale::create([
+            'sale_date'=>$request->sale_date,
+            'customer_id'=>$request->customer_name,
+            'total_price'=>$total,
+            'sale_by'=>auth()->user()->id,
+
+        ]);
+
+
+        $carts=session()->get('cart');
+
+
+
+            foreach ($carts as $cart){
+
+          $details =  Saledetails::create([
+                'sale_id' => $saleid->id,
+                'medicine_id' => $cart['medicine_id'],
+                'qty' => $cart['qty'],
+                'sale_price' => $cart['sale_price'],
+                'sub_total' => $cart['sale_price'] * $cart['qty'],
+            ]);
+
+
+            $stock=Stock::where('medicine_id',$cart['medicine_id'])->first();
+
+//dd($stock);
+
+if($stock)
+{
+    if($stock->qty > $cart['qty']){
+        $stock->update([
+            'qty' =>$stock->qty - $cart['qty']
+        ]);
+    }else{
+        return redirect()->back()->with('message','Quantity is Low');
+    }
+
+
+}else{
+
+    Stock::create([
+
+        'medicine_id'=>$cart['medicine_id'],
+        'qty'=> $cart['qty'],
+
+    ]);
+
+
+}
+
+
+
+    }
+    $request->session()->forget('cart');
+return redirect()->route('',$saleid);
+
+
+}
+
+
 
     public function cart(Request $request)
     {
-        //$product=product::all();
+        //$medicine=medicine::all();
 
 
-        $medicine=Medicine::find($request->medicine_name);
+        $medicine = Medicine::find($request->medicine_name);
 
 
 
@@ -38,16 +110,23 @@ class saleController extends Controller
 
         $cart = session()->get('cart');
 
-        
+        $stock=Stock::where('medicine_id',$medicine->id)->first();
+
+        if($stock->qty < $request->qty){
+
+            return redirect()->back()->with('message',' Requested medicine Quantity is Low');
+        }
+
+        // if cart is empty then this the first medicine
         if(!$cart) {
 
             $cart = [
                     $medicine->id  => [
-                        "medicine_id" => $medicine->id,
+                        'medicine_id' => $medicine->id,
                         "medicine_name" => $medicine->medicine_name,
                         "sale_price" => $medicine->sale_price,
                         "qty" => $request->qty,
-                        'sub_total' =>$request->sale_price * $request->qty
+                        'sub_total' =>$medicine->sale_price * $request->qty
                     ]
 
             ];
@@ -56,7 +135,7 @@ class saleController extends Controller
 
             //dd($cart);
 
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return redirect()->back()->with('success', 'medicine added to cart successfully!');
         }
 
 
@@ -68,26 +147,26 @@ class saleController extends Controller
 
             session()->put('cart', $cart);
 
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return redirect()->back()->with('success', 'medicine added to cart successfully!');
 
         }
 
 
         $cart[$medicine->id] = [
-            "medicine_id" => $medicine->id,
-            "medicine_name" => $medicine->medicine_name,
-            "sale_price" => $medicine->sale_price,
-            "qty" => $request->qty,
-            'sub_total' =>$request->sale_price * $request->qty
+                            'medicine_id' => $medicine->id,
+                            "medicine_name" => $medicine->medicine_name,
+                            "sale_price" => $medicine->sale_price,
+                            "qty" => $request->qty,
+                            'sub_total' =>$medicine->sale_price * $request->qty
         ];
 
         session()->put('cart', $cart);
 
 
 
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        return redirect()->back()->with('success', 'medicine added to cart successfully!');
     }
-    public function forget (Request $request)
+    public function pos_forget (Request $request)
     {
         if(session()->has('cart'))
         {
@@ -98,77 +177,5 @@ class saleController extends Controller
 return redirect()->back();
 
     }
-    public function post( Request $request){
-        //$request->session()->flash('cart');
-
-        $carts=session()->get('cart');
-        //dd($carts);
-        $total=array_sum(array_column($carts,'sub_total'));
-
-        $purchaseid=sale::create([
-            
-            'purchase_date'=>$request->purchase_date,
-            'challan_no'=>$request->challan_no,
-            'supplier_id'=>$request->supplier_name,
-            'total_price'=>$total,
-            'received_by'=>auth()->user()->id,
-
-        ]);
-
-
-        $carts=session()->get('cart');
-        dd($carts);
-
-
-            foreach ($carts as $cart){
-
-          $details=saledetails::create([
-                'purchase_id' => $purchaseid->id,
-                'medicine_id' => $cart['medicine_id'],
-                'qty' => $cart['qty'],
-                'unit_price' => $cart['buy_price'],
-                'sub_total' => $cart['buy_price'] * $cart['qty'],
-            ]);
-
-
-            $stock=Stock::where('medicine_id',$cart['medicine_id'])->first();
-
-//dd($stock);
-
-if($stock)
-{
-    $stock->update([
-        'qty' =>$stock->qty + $cart['qty'],
-        'produced_date'=> $cart['produced_date'],
-        'expired_date'=> $cart['expired_date']
-    ]);
-
-}
-else
-{
-
-    Stock::create([
-
-        'medicine_id'=>$cart['medicine_id'],
-        'qty'=> $cart['qty'],
-        'produced_date'=> $cart['produced_date'],
-        'expired_date'=> $cart['expired_date'],
-
-    ]);
-}
-
-
-
-    }
-    $request->session()->forget('cart');
-return redirect()->route('manage.purchase',$purchaseid);
-
-
-}
-public function details($id){
-    $purchasedetails=saledetails::where('purchase_id',$id)->get();
-    return view('backend.layout.purchase.purchasedetails',compact('purchasedetails'));
-    
-}
 
 }
