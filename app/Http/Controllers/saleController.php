@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Medicine;
-use App\Models\Saledetails;
 use App\Models\Sale;
+use App\Models\Saledetails;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 
@@ -17,8 +17,9 @@ class saleController extends Controller
         return view('backend.layout.sale.sale',compact('medicine','customer')); 
     }
     public function salemanage(){
-        $sale=sale::all();
-        return view('backend.layout.sale.sale',compact('sale'));
+       $sale=Sale::all();
+        //dd($sale);
+        return view('backend.layout.sale.managesale',compact('sale'));
     }
 
     public function post( Request $request){
@@ -82,7 +83,7 @@ if($stock)
 
     }
     $request->session()->forget('cart');
-return redirect()->route('',$saleid);
+return redirect()->route('salemanage');
 
 
 }

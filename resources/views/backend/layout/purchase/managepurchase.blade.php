@@ -9,7 +9,7 @@
     <section class="content-header">
       <h1>
         Manage
-        Sale</small>
+        Purchase</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -34,7 +34,7 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Manage Products</h3>
+              <h3 class="box-title">Manage Medicine</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
