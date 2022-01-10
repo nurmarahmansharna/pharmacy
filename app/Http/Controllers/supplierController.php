@@ -21,7 +21,7 @@ class supplierController extends Controller
         'supplier_name'=>'required',
         'phone'=>'required|numeric|digits:11',
         'address'=>'required',
-        'email'=>'required',
+        'email'=>'required|regex:/(.+)@(.+)\.(.+)/i',
          
      ]);
       Supplier::create([

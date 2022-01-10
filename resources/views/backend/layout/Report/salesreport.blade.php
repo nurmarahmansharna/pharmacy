@@ -8,11 +8,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Manage
-        Sale</small>
+        Sales 
+      Report</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Sale</li>
       </ol>
     </section>
@@ -25,6 +25,31 @@
 
           <div id="messages"></div>
 
+          <form action="#" method="get">
+            <div class="row book-form">
+                <div class="form-input col-md-3 col-sm-6 mt-3">
+                    <label>Select Date</label>
+                    <input type="date" name="from_date" placeholder="Date" required="">
+                </div>
+                <div class="bottom-btn col-md-4 col-sm-6 mt-3">
+                    <button type="submit"
+                        class="btn btn-style btn-primary w-100 px-2">Search
+                    </button>
+
+
+
+                    <button class="btn btn-primary" onclick="printDiv('printableArea')">
+                        <i class="fa fa-print"></i> Print
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        </form>
+      <br>
+      
 
 
 
@@ -34,7 +59,7 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Manage Medicine</h3>
+              <h3 class="box-title">Sales Report</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -47,7 +72,6 @@
                   <th>Customer</th>
                   <th>Total Price</th>
                   <th>Sale By</th>
-                  <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -66,25 +90,12 @@
                         <td>{{$sales->User->username}}</td>
 
 
-
-
-
-
-                        <td class="">
-                            <a href="{{route('sale.details',$sales->id)}}"><i class="fa fa-align-justify"></i></a>
-
-
-                        </td>
-
-
-
-
-                    </tr>
+                     </tr>
                     @endforeach()
             </tbody>
 
               </table>
-              <h3><td>TOTAL- {{$total}} TK</td></h3>
+              <h4><td>TOTAL- {{$total}} TK</td></h4>
               
 
 

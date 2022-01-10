@@ -83,7 +83,7 @@ if($stock)
 
     }
     $request->session()->forget('cart');
-return redirect()->route('salemanage');
+return redirect()->route('sale.details',$saleid);
 
 
 }
@@ -178,5 +178,10 @@ return redirect()->route('salemanage');
 return redirect()->back();
 
     }
+    public function details($id){
+        $saledetails=Saledetails::where('sale_id',$id)->get();
+        return view('backend.layout.sale.saledetails',compact('saledetails','id'));
+        
+    } 
 
 }

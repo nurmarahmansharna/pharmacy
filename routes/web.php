@@ -14,6 +14,8 @@ use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\purchaseController;
 use App\Http\Controllers\saleController;
 use App\Http\Controllers\stockController;
+use App\Http\Controllers\reportController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +37,8 @@ Route::get('/',[loginController::class,'login'])->name('login');
 Route::post('/login',[loginController::class,'login_user'])->name('login_user');
 Route::group(['middleware'=>'auth'],function()
 {
-    Route::group(['prefix'=>'admin','middleware'=>'admin'],function (){
+    Route::group(['prefix'=>'/','middleware'=>'admin'],function (){
+
     Route::get('/dashboard',[dashboardController::class,'dash'])->name('dashboard');
 
 //start user
@@ -80,6 +83,8 @@ Route::get('/generic',[genericController::class,'generic'])->name('generic');
 Route::post('/generic/create',[genericController::class,'genericcreate'])->name('generic.create');
 Route::get('/generic/delete/{id}',[genericController::class,'delete'])->name('generic.delete');
 Route::get('/generic/details/{id}',[genericController::class,'details'])->name('generic.details');
+Route::get('/generic/edit/{id}',[genericController::class,'edit'])->name('generic.edit');
+Route::put('/generic/update/{id}',[genericController::class,'update'])->name('generic.update');
 
 //end generic
 
@@ -117,6 +122,11 @@ Route::get('purchase/details/{id}',[purchaseController::class,'details'])->name(
 //stock start
 Route::get('/stocks',[stockController::class,'stock'])->name('stock');
 //stock end
+
+//report
+Route::get('/purchase/report',[reportController::class,'purchasereport'])->name('purchase.report');
+Route::get('/sale/report',[reportController::class,'salesreport'])->name('sale.report');
+
 //logout start
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 });

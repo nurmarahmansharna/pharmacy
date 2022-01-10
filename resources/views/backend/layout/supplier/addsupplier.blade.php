@@ -40,8 +40,8 @@
               <div class="box-body">
 
                 <div class="form-group">
-                  <label for="suppliername">Supplier name</label>
-                  <input type="text" class="form-control" id="supplier_name" name="supplier_name" placeholder="Supplier name" autocomplete="off">
+                  <label for="suppliername">Company or Supplier name</label>
+                  <input type="text" class="form-control" id="supplier_name" name="supplier_name" placeholder="Company or Supplier name" autocomplete="off">
                 </div>
                 
 
@@ -57,7 +57,7 @@
                   <label for="address">Address</label>
                   <input required name="address" type="text" class="form-control" id="address" name="address" placeholder="Address" autocomplete="off">
                 </div>
-
+ 
 
                 <div class="form-group">
                   <label for="email">Email</label>

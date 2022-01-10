@@ -27,10 +27,10 @@ class loginController extends Controller
                 return redirect()->route('dashboard');
             }
             elseif(auth()->user()->type=='manager'){
-                return redirect()->route('dashboard');
+                return redirect()->route('sale');
             }
             elseif(auth()->user()->type=='salesman'){
-                return redirect()->route('dashboard');
+                return redirect()->route('sale');
             }
             else{
                 Auth::logout();

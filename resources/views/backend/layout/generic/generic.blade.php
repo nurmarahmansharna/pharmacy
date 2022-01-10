@@ -11,7 +11,7 @@
             <small>Generic</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Generic</li>
         </ol>
     </section>
@@ -75,7 +75,7 @@
                                         <td>{{ $generics->status }}</td>
                                         <td class="">
                                             <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('generic.delete',$generics->id)}}"><i class="material-icons">cancel</i></a>
-                                            <a href="#"><i class="material-icons">edit</i></a>
+                                            <a href="{{route('generic.edit',$generics->id)}}"><i class="material-icons">edit</i></a>
                                             <a
                                                 href="{{route('generic.details',$generics->id)}}"><i
                                                     class="material-icons">details</i></a>

@@ -76,7 +76,7 @@
 
                 <div class="form-group">
                   <label for="medicine_name">Medicine name</label>
-                  <input value="{{$medicine_edit->medicine_name}}" required name="medicine_name" type="text" class="form-control" id="medicine_name"  placeholder="Enter medicine name" autocomplete="off"/>
+                  <input value="{{$medicine_edit->medicine_name}}"  name="medicine_name" type="text" class="form-control" id="medicine_name"  placeholder="Enter medicine name" autocomplete="off"/>
                 </div>
 
 

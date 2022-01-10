@@ -18,14 +18,14 @@
                 <!-- small box -->
                 <div class="small-box bg-blue">
                     <div class="inner">
-                        <h3>0</h3>
+                        <h3>{{$salevalue}}</h3>
 
                         <p>Sale Value</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i
+                    <a href="{{route('sale.report')}}" class="small-box-footer">More info <i
                         class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
@@ -38,14 +38,14 @@
                 <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3>0</h3>
+                        <h3>{{$purchasevalue}}</h3>
 
                         <p>Purchase Value</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i
+                    <a href="{{route('purchase.report')}}" class="small-box-footer">More info <i
                             class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
@@ -61,14 +61,14 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <p><h3>0</h3></p>
+                        <p><h3>{{$medicine}}</h3></p>
 
-                        <p>Total Product</p>
+                        <p>Total Medicine</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i
+                    <a href="{{route('medicine.manage')}}" class="small-box-footer">More info <i
                             class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
@@ -81,14 +81,14 @@
                 <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <p><h3>1</h3></p>
+                        <p><h3>{{$user}}</h3></p>
 
                         <p>Total Users</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-android-people"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i
+                    <a href="{{route('user.usermanage')}}" class="small-box-footer">More info <i
                             class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
@@ -99,14 +99,14 @@
                 <!-- small box -->
                 <div class="small-box bg-red">
                     <div class="inner">
-                        <p><h3>0</h3></p>
+                        <p><h3>{{$customer}}</h3></p>
 
                         <p>Total Customer</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-android-people"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i
+                    <a href="{{route('customer.manage')}}" class="small-box-footer">More info <i
                             class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
@@ -118,14 +118,14 @@
                 <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
-                        <p><h3>0</h3></p>
+                        <p><h3>{{$supplier}}</h3></p>
 
                         <p>Total Supplier</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-android-people"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i
+                    <a href="{{route('supplier.manage')}}" class="small-box-footer">More info <i
                             class="fa fa-arrow-circle-right"></i></a>
                 </div>
 

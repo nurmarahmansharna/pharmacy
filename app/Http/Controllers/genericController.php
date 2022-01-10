@@ -33,4 +33,27 @@ class genericController extends Controller
         return view('backend.layout.generic.generic_details',compact('medicine'));
 
     }
+    public function edit($id){
+
+        $generic=Generic::find($id);
+        //dd($type);
+        return view('backend.layout.generic.edit_generic',compact('generic'));
+    
+    }
+    public function update (Request $request, $id)
+    {
+        // dd($request->all());
+
+        $generic=Generic::find($id);
+
+        $generic->update([
+            'generic_name'=>$request->generic_name,
+            'status'=>$request->active,
+
+
+        ]);
+
+        return redirect()->route('generic')->with('msg','Medicine generic is Updated');
+
+    }
 }

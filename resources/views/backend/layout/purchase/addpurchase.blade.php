@@ -7,11 +7,11 @@
             Medicine Purchase
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
 
 
 
-            <li class="active">POS</li>
+            <li class="active">PMS</li>
         </ol>
     </section>
 

@@ -9,4 +9,11 @@ class Saledetails extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    public function medicine()
+    {
+
+        return $this->belongsto(Medicine::class);
+
+        }
 }
