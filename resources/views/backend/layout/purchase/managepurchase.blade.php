@@ -34,7 +34,7 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Manage Medicine</h3>
+              <h3 class="box-title">Manage Purchase</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">

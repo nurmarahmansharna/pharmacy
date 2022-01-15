@@ -62,6 +62,7 @@
                                     <th>Address</th>
                                     <th>Phone</th>
                                     <th>Action</th>
+                                    
                                 </tr>
                             </thead>
 
@@ -70,15 +71,18 @@
                                 @foreach($customer as $customers)
                                     <tr>
                                         <td>{{ $loop->iteration}}</td>
+
                                         <td>{{ $customers->customer_name}}</td>
                                         <td>{{ $customers->email}}</td>
                                         <td>{{ $customers->address}}</td>
                                         <td>{{ $customers->phone}}</td>
+
                                         <td class="">
                                             <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('customer.delete',$customers->id)}}"><i class="fa fa-close" style="font-size:24px"></i></a>
                                             <a href="{{route('customer.edit',$customers->id)}}"><i class="fa fa-pencil" style="font-size:24px"></i></a>
 
                                           </td>
+
 
 
                                     </tr>

@@ -22,8 +22,6 @@ class purchaseController extends Controller
     }
 
 
-    
-
     public function cart(Request $request)
     {
         //$product=product::all();

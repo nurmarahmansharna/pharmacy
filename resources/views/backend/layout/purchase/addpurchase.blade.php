@@ -84,7 +84,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="date" class="form-label">Expired Date</label>
+                                        <label for="date" class="form-label">Produced Date</label>
                                         <input required type="date" value="{{ date('Y-m-d') }}"
                                             class="form-control"
                                             id="purchase_date" name="produced_date">
@@ -96,6 +96,8 @@
                                             class="form-control"
                                             id="purchase_date" name="expired_date">
                                     </div>
+
+                                    
 
 
 
@@ -210,7 +212,7 @@
 
 
                                 <div class="form-group">
-                                    <label for="supplier_name">Customer</label>
+                                    <label for="supplier_name">Supplier</label>
                                     <select type="text" class="form-control select_group" id="supplier_name"
                                         name="supplier_name" placeholder="Customer" autocomplete="off">
                                         
