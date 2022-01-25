@@ -18,6 +18,7 @@ class purchaseController extends Controller
     }
     public function managepurchase(){
         $purchase=Purchase::with('User')->orderBy('id','desc')->paginate(8);
+
         return view('backend.layout.purchase.managepurchase',compact('purchase'));
     }
 
@@ -176,6 +177,7 @@ return redirect()->route('manage.purchase',$purchaseid);
 }
 public function details($id){
     $purchasedetails=Purchasedetails::where('purchase_id',$id)->get();
+    
     return view('backend.layout.purchase.purchasedetails',compact('purchasedetails'));
     
 } 

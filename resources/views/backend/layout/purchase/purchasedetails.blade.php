@@ -1,6 +1,8 @@
 @extends('master')
 @section('content')
-
+@php
+    $Total=0;
+@endphp
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -50,14 +52,19 @@
 
 
                     @foreach($purchasedetails as $cart)
+
+                    @php
+                        $Total=$cart->sub_total+$Total;
+                    @endphp
                     <tr>
 
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{$cart['purchase_id']}}</td>
+                        <td>{{$cart->purchase_id}}</td>
                         <td>{{$cart->medicine->medicine_name}}</td>
-                        <td>{{$cart['qty']}}</td>
-                        <td>{{$cart['unit_price']}}</td>
-                        <td>{{$cart['unit_price']*$cart['qty']}}</td>
+                        <td>{{$cart->qty}}</td>
+                        <td>{{$cart->unit_price}}</td>
+                        <td>{{$cart->sub_total}}</td>
+
 
                         {{-- <td>{{$purc->category->category_name}}</td> --}}
 
@@ -69,19 +76,19 @@
                           <a href="#"><i class="material-icons">edit</i></a>
 
                         </td> --}}
-
-
-
-
-                    </tr>
+            </tr>
                     @endforeach()
 
             </tbody>
 
               </table>
 
+              
+
             </div>
             <!-- /.box-body -->
+<h4><td>Total= {{$Total}} TK</td></h4>
+            
           </div>
           <!-- /.box -->
         </div>
