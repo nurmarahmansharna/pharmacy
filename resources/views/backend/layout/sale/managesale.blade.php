@@ -47,7 +47,9 @@
                   <th>Customer</th>
                   <th>Total Price</th>
                   <th>Sale By</th>
+                  
                   <th>Action</th>
+                  
                   </tr>
                 </thead>
                 <tbody>
@@ -64,11 +66,7 @@
                         <td>{{$sales->customer->customer_name}}</td>
                         <td>{{$sales->total_price}}</td>
                         <td>{{$sales->User->username}}</td>
-
-
-
-
-
+                        
 
                         <td class="">
                             <a href="{{route('sale.details',$sales->id)}}"><i class="fa fa-align-justify"></i></a>

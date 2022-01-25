@@ -12,7 +12,7 @@ class Stock extends Model
     public function medicine()
     {
 
-        return $this->belongsto(Medicine::class);
+        return $this->belongsto(Medicine::class,'medicine_id','id');
 
         }
 }

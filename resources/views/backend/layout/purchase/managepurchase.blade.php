@@ -63,7 +63,7 @@
                         <td>inv{{$purchases->id}}m</td>
                         <td>{{$purchases->purchase_date}}</td>
                         <td>{{$purchases->challan_no}}</td>
-                        <td>{{$purchases->Supplier->supplier_name}}</td>
+                        <td>{{$purchases->supplier->supplier_name}}</td>
                         <td>{{$purchases->total_price}}</td>
                         <td>{{$purchases->User->username}}</td>
 

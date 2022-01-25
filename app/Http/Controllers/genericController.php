@@ -17,16 +17,16 @@ class genericController extends Controller
             'generic_name'=>$request->generic_name,
             'status'=>$request->active,
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('msg','Medicine generic created successfully.');
     }
     public function delete($id){
         $generics=Generic::find($id);
 
         if($generics){
             $generics->delete();
-        return redirect()->back()->with('msg','Medicine type is delete successfully');
+        return redirect()->back()->with('msg','Medicine generic is delete successfully');
         }
-        return redirect()->back()->with('msg','Medicine type is not deleted');
+        return redirect()->back()->with('msg','Medicine generic is not deleted');
     }
     public function details($id){
         $medicine=Medicine::where('generic_id',$id)->get();

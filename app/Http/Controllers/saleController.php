@@ -180,7 +180,8 @@ return redirect()->back();
     }
     public function details($id){
         $saledetails=Saledetails::where('sale_id',$id)->get();
-        return view('backend.layout.sale.saledetails',compact('saledetails','id'));
+       
+        return view('backend.layout.sale.saledetails',compact('saledetails','id','customer'));
         
     } 
 

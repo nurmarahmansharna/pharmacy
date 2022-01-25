@@ -144,33 +144,7 @@
 
             
 
-                <li class="treeview" id="mainOrdersNav">
-                    <a href="#">
-                        <i class="fa fa-dollar"></i>
-                        <span>Payments</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-
-                    <ul class="treeview-menu">
-
-                        <li id="managepayment"><a href="http://localhost/pos/public/payment/manage"><i
-                                    class="fa fa-circle-o"></i> Supplier
-                                Payment</a></li>
-
-                        <li id="managepayment"><a href="http://localhost/pos/public/payment/manage/customer"><i
-                                    class="fa fa-circle-o"></i> Customer
-                                Payment</a></li>
-
-                    </ul>
-                    <ul class="treeview-menu">
-
-                        <li id="managepayment"><a href="http://localhost/pos/public/payment/manage"><i
-                                    class="fa fa-circle-o"></i> Supplier
-                                Payment</a></li>
-                    </ul>
-                </li>
+               
 
 
 
